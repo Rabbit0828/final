@@ -3,4 +3,4 @@
 ### クラス　　  :SD2E
 ### 氏名　　　  :栗原　渉宇
 ### システム名  :漫画管理システム
-### URL 　　　:
+### URL 　　　: http://aso2201143.zombie.jp/php2/final/index.php
