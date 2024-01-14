@@ -12,29 +12,32 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/index.css">
-    <title>モンスター一覧</title>
+    <link rel="stylesheet" href="css/update_monster.css">
+    <title>削除確認</title>
 </head>
 
 <body>
-    <h1>モンスター一覧</h1>
+    <h1>削除確認</h1>
     <hr>
-    <button onclick="location.href='touroku_input.php'">新規登録</button>
-
     <?php
     $pdo = new PDO($connect, USER, PASS);
+    $sql=$pdo->prepare('delete from Monster where monster_id=?');
+    if($sql->execute([$_POST['id']])){
+        echo '削除に成功しました。';
+    }
+    else{
+        echo '削除に失敗しました。';
+    }
+    ?>
+    <br><hr><br>
+    <table>
+
+    <?php
     echo "<table><th>モンスターID</th><th>モンスター名</th><th>別名</th><th>異名</th><th>種族</th><th>種別</th>";
 
     foreach ($pdo->query('select * from Monster') as $row) {
         echo '<tr>';
-
-        echo '<td>';
-        echo '<form action="monster.php" method="post">';
-        echo '<input type="hidden" name="id" value="',$row['monster_id'],'">';
-        echo '<button type="submit">', $row['monster_id'], '</button>'; 
-        echo '</form>';
-        echo '</td>';
-
+        echo '<td>', $row['monster_id'], '</td>';
         echo '<td>', $row['monster_name'], '</td>';
         echo '<td>', $row['alias'], '</td>';
         echo '<td>', $row['other_name'], '</td>';
@@ -46,6 +49,11 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
     }
     echo "</table>";
     ?>
+    </table>
+    <form action="index.php" metod="post">
+    <button onclick="location.href='index.php'">トップへ戻る</button>
+</form>
 </body>
 
 </html>
+
