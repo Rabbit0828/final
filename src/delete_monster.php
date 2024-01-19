@@ -12,7 +12,7 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/update_monster.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>削除確認</title>
 </head>
 
@@ -33,7 +33,7 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
     <table>
 
     <?php
-    echo "<table><th>モンスターID</th><th>モンスター名</th><th>別名</th><th>異名</th><th>種族</th><th>種別</th>";
+    echo "<table><th>モンスターID</th><th>モンスター名</th><th>別　名</th><th>異　名</th><th>種　族</th><th>種　別</th><th>生息地</th>";
 
     foreach ($pdo->query('select * from Monster') as $row) {
         echo '<tr>';
@@ -43,6 +43,7 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
         echo '<td>', $row['other_name'], '</td>';
         echo '<td>', $row['race'], '</td>';
         echo '<td>', $row['type'], '</td>';
+        echo '<td>', $row['hunting_ground'], '</td>';
         echo '</tr>';
         
         echo "\n";

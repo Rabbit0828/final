@@ -66,7 +66,7 @@ try {
     <textarea name="type"rows="1" cols="30"><?php echo $row['type']; ?></textarea><br>
     危険度:
     <textarea name="danger_level"rows="3" cols="30"><?php echo $row['danger_level']; ?></textarea><br>
-    狩猟地:
+    生息地:
     <textarea name="hunting_ground"rows="5" cols="50"><?php echo $row['hunting_ground']; ?></textarea><br>
     説明:
     <textarea name="monster_setu"rows="5" cols="50"><?php echo $row['monster_setu']; ?></textarea><br>

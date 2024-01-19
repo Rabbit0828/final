@@ -73,23 +73,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span><?php echo $row['monster_id']; ?></span><br>
         <label>モンスター名:</label>
         <span><?php echo $row['monster_name']; ?></span><br>
-        <label>別名:</label>
+        <label>別　名:</label>
         <span><?php echo $row['alias']; ?></span><br>
-        <label>異名:</label>
+        <label>異　名:</label>
         <span><?php echo $row['other_name']; ?></span><br>
-        <label>種族:</label>
+        <label>種　族:</label>
         <span><?php echo $row['race']; ?></span><br>
-        <label>種別:</label>
+        <label>種　別:</label>
         <span><?php echo $row['type']; ?></span><br>
         <label>危険度:</label>
         <span><?php echo $row['danger_level']; ?></span><br>
-        <label>狩猟地:</label>
+        <label>生息地:</label>
         <span><?php echo $row['hunting_ground']; ?></span><br>
-        <label>説明:</label>
+        <label>説　明:</label>
         <span><?php echo $row['monster_setu']; ?></span><br>
         <label>登場作品:</label>
         <span><?php echo $row['opus']; ?></span><br>
-        <label>画像:</label>
+        <label>画　像:</label>
         <span><?php echo $row['gazou']; ?></span><br>
 
     </form>

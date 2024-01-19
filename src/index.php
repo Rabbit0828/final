@@ -20,28 +20,48 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
     <h1>モンスター一覧</h1>
     <hr>
     <button onclick="location.href='touroku_input.php'">新規登録</button>
+    <button onclick="location.href='branch.php'">戻る</button>
+
+    <form method="post" action="">
+        <label for="search"></label>
+        <input type="text" id="search" name="search">
+        <button type="submit">検索</button>
+    </form>
 
     <?php
     $pdo = new PDO($connect, USER, PASS);
-    echo "<table><th>モンスターID</th><th>モンスター名</th><th>別名</th><th>異名</th><th>種族</th><th>種別</th>";
+    echo "<table><th>モンスターID</th><th>モンスター名</th><th>別　名</th><th>異　名</th><th>種　族</th><th>種　別</th><th>生息地</th>";
 
-    foreach ($pdo->query('select * from Monster') as $row) {
+    if (isset($_POST['search']) && !empty($_POST['search'])) {
+        $search = $_POST['search'];
+        $stmt = $pdo->prepare("SELECT * FROM Monster 
+                              WHERE monster_name LIKE :search 
+                              OR alias LIKE :search 
+                              OR other_name LIKE :search 
+                              OR race LIKE :search 
+                              OR type LIKE :search 
+                              OR hunting_ground LIKE :search");
+        $stmt->bindValue(':search', "%$search%", PDO::PARAM_STR);
+        $stmt->execute();
+    } else {
+        $stmt = $pdo->query('SELECT * FROM Monster');
+    }
+
+    foreach ($stmt as $row) {
         echo '<tr>';
-
         echo '<td>';
         echo '<form action="monster.php" method="post">';
-        echo '<input type="hidden" name="id" value="',$row['monster_id'],'">';
-        echo '<button type="submit">', $row['monster_id'], '</button>'; 
+        echo '<input type="hidden" name="id" value="', $row['monster_id'], '">';
+        echo '<button type="submit">', $row['monster_id'], '</button>';
         echo '</form>';
         echo '</td>';
-
         echo '<td>', $row['monster_name'], '</td>';
         echo '<td>', $row['alias'], '</td>';
         echo '<td>', $row['other_name'], '</td>';
         echo '<td>', $row['race'], '</td>';
         echo '<td>', $row['type'], '</td>';
+        echo '<td>', $row['hunting_ground'], '</td>';
         echo '</tr>';
-        
         echo "\n";
     }
     echo "</table>";
@@ -49,3 +69,7 @@ $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
 </body>
 
 </html>
+
+
+
+

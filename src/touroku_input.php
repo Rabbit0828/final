@@ -21,7 +21,7 @@
         <textarea name="type" rows="1" cols="30" required></textarea><br>
         危険度:
         <textarea name="danger_level" rows="3" cols="30" required></textarea><br>
-        狩猟地:
+        生息地:
         <textarea name="hunting_ground" rows="5" cols="50" required></textarea><br>
         説明:
         <textarea name="monster_setu" rows="5" cols="50" required></textarea><br>
@@ -31,6 +31,7 @@
         <textarea name="gazou" rows="1" cols="10" required></textarea><br><br>
         <input type="submit" value="登録">
     </form>
+    <button onclick="location.href='index.php'">トップに戻る</button>
 </body>
 </html>
 
